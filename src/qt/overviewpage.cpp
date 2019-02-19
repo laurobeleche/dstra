@@ -309,15 +309,15 @@ void OverviewPage::updatePurificationProgress()
     if (!pwalletMain) return;
 
     QString strAmountAndRounds;
-    QString strAnonymizeDSTRAAmount = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nAnonymizeDSTRAAmount * COIN, false, BitcoinUnits::separatorAlways);
+    QString strAnonymizeENSURANCEAmount = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nAnonymizeENSURANCEAmount * COIN, false, BitcoinUnits::separatorAlways);
 
     if (currentBalance == 0) {
         ui->purificationProgress->setValue(0);
         ui->purificationProgress->setToolTip(tr("No inputs detected"));
 
         // when balance is zero just show info from settings
-        strAnonymizeDSTRAAmount = strAnonymizeDSTRAAmount.remove(strAnonymizeDSTRAAmount.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
-        strAmountAndRounds = strAnonymizeDSTRAAmount + " / " + tr("%n Rounds", "", nPurificationRounds);
+        strAnonymizeENSURANCEAmount = strAnonymizeENSURANCEAmount.remove(strAnonymizeENSURANCEAmount.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
+        strAmountAndRounds = strAnonymizeENSURANCEAmount + " / " + tr("%n Rounds", "", nPurificationRounds);
 
         ui->labelAmountRounds->setToolTip(tr("No inputs detected"));
         ui->labelAmountRounds->setText(strAmountAndRounds);
@@ -344,20 +344,20 @@ void OverviewPage::updatePurificationProgress()
     CAmount nMaxToAnonymize = nAnonymizableBalance + currentAnonymizedBalance + nDenominatedUnconfirmedBalance;
 
     // If it's more than the anon threshold, limit to that.
-    if (nMaxToAnonymize > nAnonymizeDSTRAAmount * COIN) nMaxToAnonymize = nAnonymizeDSTRAAmount * COIN;
+    if (nMaxToAnonymize > nAnonymizeENSURANCEAmount * COIN) nMaxToAnonymize = nAnonymizeENSURANCEAmount * COIN;
 
     if (nMaxToAnonymize == 0) return;
 
-    if (nMaxToAnonymize >= nAnonymizeDSTRAAmount * COIN) {
+    if (nMaxToAnonymize >= nAnonymizeENSURANCEAmount * COIN) {
         ui->labelAmountRounds->setToolTip(tr("Found enough compatible inputs to anonymize %1")
-                                              .arg(strAnonymizeDSTRAAmount));
-        strAnonymizeDSTRAAmount = strAnonymizeDSTRAAmount.remove(strAnonymizeDSTRAAmount.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
-        strAmountAndRounds = strAnonymizeDSTRAAmount + " / " + tr("%n Rounds", "", nPurificationRounds);
+                                              .arg(strAnonymizeENSURANCEAmount));
+        strAnonymizeENSURANCEAmount = strAnonymizeENSURANCEAmount.remove(strAnonymizeENSURANCEAmount.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
+        strAmountAndRounds = strAnonymizeENSURANCEAmount + " / " + tr("%n Rounds", "", nPurificationRounds);
     } else {
         QString strMaxToAnonymize = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nMaxToAnonymize, false, BitcoinUnits::separatorAlways);
         ui->labelAmountRounds->setToolTip(tr("Not enough compatible inputs to anonymize <span style='color:red;'>%1</span>,<br>"
                                              "will anonymize <span style='color:red;'>%2</span> instead")
-                                              .arg(strAnonymizeDSTRAAmount)
+                                              .arg(strAnonymizeENSURANCEAmount)
                                               .arg(strMaxToAnonymize));
         strMaxToAnonymize = strMaxToAnonymize.remove(strMaxToAnonymize.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
         strAmountAndRounds = "<span style='color:red;'>" +
@@ -528,7 +528,7 @@ void OverviewPage::togglePurification()
 
         /* show purification configuration if client has defaults set */
 
-        if (nAnonymizeDSTRAAmount == 0) {
+        if (nAnonymizeENSURANCEAmount == 0) {
             PurificationConfig dlg(this);
             dlg.setModel(walletModel);
             dlg.exec();

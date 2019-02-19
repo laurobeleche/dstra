@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=DSTRA
-Comment=DSTRA P2P Cryptocurrency
-Comment[fr]=DSTRA, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=DSTRA, eşten eşe kriptografik sanal para birimi
-Exec=dstra-qt %u
+Name=ENSURANCE
+Comment=ENSURANCE P2P Cryptocurrency
+Comment[fr]=ENSURANCE, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=ENSURANCE, eşten eşe kriptografik sanal para birimi
+Exec=ensurance-qt %u
 Terminal=false
 Type=Application
-Icon=dstra128
-MimeType=x-scheme-handler/dstra;
+Icon=ensurance128
+MimeType=x-scheme-handler/ensurance;
 Categories=Office;Finance;

@@ -1,31 +1,31 @@
 #!/bin/bash
 #
-#  dstrad The PIVX core server.
+#  ensuranced The PIVX core server.
 #
 #
 # chkconfig: 345 80 20
-# description: dstrad
-# processname: dstrad
+# description: ensuranced
+# processname: ensuranced
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/dstrad, see below
-if [ -f /etc/sysconfig/dstrad ]; then
-        . /etc/sysconfig/dstrad
+# you can override defaults in /etc/sysconfig/ensuranced, see below
+if [ -f /etc/sysconfig/ensuranced ]; then
+        . /etc/sysconfig/ensuranced
 fi
 
 RETVAL=0
 
-prog=dstrad
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/dstrad
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/dstrad}
+prog=ensuranced
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/ensuranced
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/ensuranced}
 
-# dstrad defaults to /usr/bin/dstrad, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/dstrad}
+# ensuranced defaults to /usr/bin/ensuranced, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/ensuranced}
 
-# dstrad opts default to -disablewallet, override with BITCOIND_OPTS
+# ensuranced opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS}
 
 start() {

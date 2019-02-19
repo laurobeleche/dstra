@@ -1,6 +1,6 @@
 [Protocol]
-exec=dstra-qt '%u'
-protocol=dstra
+exec=ensurance-qt '%u'
+protocol=ensurance
 input=none
 output=none
 helper=true

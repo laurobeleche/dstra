@@ -1,4 +1,4 @@
-# DSTRA Core (v2) integration/staging repository
+# ENSURANCE Core (v2) integration/staging repository
 
 ## Coin Specs
 

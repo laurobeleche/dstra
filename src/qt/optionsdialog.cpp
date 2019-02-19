@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/dstra-config.h"
+#include "config/ensurance-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -213,7 +213,7 @@ void OptionsDialog::setMapper()
 
     /* Purification Rounds */
     mapper->addMapping(ui->purificationRounds, OptionsModel::PurificationRounds);
-    mapper->addMapping(ui->anonymizeDSTRA, OptionsModel::AnonymizeDSTRAAmount);
+    mapper->addMapping(ui->anonymizeENSURANCE, OptionsModel::AnonymizeENSURANCEAmount);
     mapper->addMapping(ui->showMasternodesTab, OptionsModel::ShowMasternodesTab);
 }
 

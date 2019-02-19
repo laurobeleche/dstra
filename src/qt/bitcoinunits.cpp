@@ -83,22 +83,22 @@ QString BitcoinUnits::description(int unit)
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
         case PIV:
-            return QString("DSTRA");
+            return QString("ENSURANCE");
         case mPIV:
-            return QString("Milli-DSTRA (1 / 1" THIN_SP_UTF8 "000)");
+            return QString("Milli-ENSURANCE (1 / 1" THIN_SP_UTF8 "000)");
         case uPIV:
-            return QString("Micro-DSTRA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("Micro-ENSURANCE (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
         case PIV:
-            return QString("TestDSTRA");
+            return QString("TestENSURANCE");
         case mPIV:
-            return QString("Milli-TestDSTRA (1 / 1" THIN_SP_UTF8 "000)");
+            return QString("Milli-TestENSURANCE (1 / 1" THIN_SP_UTF8 "000)");
         case uPIV:
-            return QString("Micro-TestDSTRA (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("Micro-TestENSURANCE (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }

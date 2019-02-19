@@ -44,7 +44,7 @@ public:
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
         PurificationRounds,   // int
-        AnonymizeDSTRAAmount, //int
+        AnonymizeENSURANCEAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
         OptionIDRowCount,
@@ -90,7 +90,7 @@ private:
 signals:
     void displayUnitChanged(int unit);
     void purificationRoundsChanged(int);
-    void anonymizeDSTRAAmountChanged(int);
+    void anonymizeENSURANCEAmountChanged(int);
     void coinControlFeaturesChanged(bool);
 };
 

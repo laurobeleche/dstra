@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between dstra-cli and dstrad)
- * of a given instance of the DSTRA system.
+ * CBaseChainParams defines the base parameters (shared between ensurance-cli and ensuranced)
+ * of a given instance of the ENSURANCE system.
  */
 class CBaseChainParams
 {

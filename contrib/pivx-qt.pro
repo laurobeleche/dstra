@@ -78,7 +78,7 @@ HEADERS += src/activemasternode.h \
            src/crypter.h \
            src/purification-relay.h \
            src/purification.h \
-           src/dstra-config.h \
+           src/ensurance-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
@@ -131,7 +131,7 @@ HEADERS += src/activemasternode.h \
            src/wallet_ismine.h \
            src/walletdb.h \
            src/compat/sanity.h \
-           src/config/dstra-config.h \
+           src/config/ensurance-config.h \
            src/crypto/common.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -333,7 +333,7 @@ HEADERS += src/activemasternode.h \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h \
            src/crypto/aes_helper.c \
            src/qt/bitcoinamountfield.moc \
-           src/qt/dstra.moc \
+           src/qt/ensurance.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
@@ -374,9 +374,9 @@ SOURCES += src/activemasternode.cpp \
            src/crypter.cpp \
            src/purification-relay.cpp \
            src/purification.cpp \
-           src/dstra-cli.cpp \
-           src/dstra-tx.cpp \
-           src/dstra.cpp \
+           src/ensurance-cli.cpp \
+           src/ensurance-tx.cpp \
+           src/ensurance.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \
            src/ecwrapper.cpp \
@@ -470,8 +470,8 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/purificationconfig.cpp \
-           src/qt/dstra.cpp \
-           src/qt/dstrastrings.cpp \
+           src/qt/ensurance.cpp \
+           src/qt/ensurancestrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
            src/qt/intro.cpp \
@@ -549,7 +549,7 @@ SOURCES += src/activemasternode.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
            src/test/skiplist_tests.cpp \
-           src/test/test_dstra.cpp \
+           src/test/test_ensurance.cpp \
            src/test/timedata_tests.cpp \
            src/test/transaction_tests.cpp \
            src/test/uint256_tests.cpp \
@@ -640,21 +640,21 @@ SOURCES += src/activemasternode.cpp \
            src/leveldb/helpers/memenv/memenv.cc \
            src/leveldb/helpers/memenv/memenv_test.cc \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
-RESOURCES += src/qt/dstra.qrc src/qt/dstra_locale.qrc
+RESOURCES += src/qt/ensurance.qrc src/qt/ensurance_locale.qrc
 
-TRANSLATIONS += src/qt/locale/dstra_bg.ts \
-                src/qt/locale/dstra_de.ts \
-                src/qt/locale/dstra_en.ts \
-                src/qt/locale/dstra_es.ts \
-                src/qt/locale/dstra_fi.ts \
-                src/qt/locale/dstra_fr.ts \
-                src/qt/locale/dstra_it.ts \
-                src/qt/locale/dstra_ja.ts \
-                src/qt/locale/dstra_pl.ts \
-                src/qt/locale/dstra_pt.ts \
-                src/qt/locale/dstra_ru.ts \
-                src/qt/locale/dstra_sk.ts \
-                src/qt/locale/dstra_sv.ts \
-                src/qt/locale/dstra_vi.ts \
-                src/qt/locale/dstra_zh_CN.ts \
-                src/qt/locale/dstra_zh_TW.ts
+TRANSLATIONS += src/qt/locale/ensurance_bg.ts \
+                src/qt/locale/ensurance_de.ts \
+                src/qt/locale/ensurance_en.ts \
+                src/qt/locale/ensurance_es.ts \
+                src/qt/locale/ensurance_fi.ts \
+                src/qt/locale/ensurance_fr.ts \
+                src/qt/locale/ensurance_it.ts \
+                src/qt/locale/ensurance_ja.ts \
+                src/qt/locale/ensurance_pl.ts \
+                src/qt/locale/ensurance_pt.ts \
+                src/qt/locale/ensurance_ru.ts \
+                src/qt/locale/ensurance_sk.ts \
+                src/qt/locale/ensurance_sv.ts \
+                src/qt/locale/ensurance_vi.ts \
+                src/qt/locale/ensurance_zh_CN.ts \
+                src/qt/locale/ensurance_zh_TW.ts

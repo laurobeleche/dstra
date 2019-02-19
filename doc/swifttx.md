@@ -12,8 +12,8 @@ When a "Transaction Lock" occurs the hash of the related transaction is broadcas
 * `zmqpubhashtxlock`: publishes the transaction hash when locked via BriskTX
 
 This mechanism has been integrated into Bitcore-Node-PIVX which allows for notification to be broadcast through Insight API in one of two ways:
-* WebSocket: [https://github.com/PIVX-Project/insight-api-dstra#web-socket-api](https://github.com/PIVX-Project/insight-api-dstra#web-socket-api) 
-* API: [https://github.com/PIVX-Project/insight-api-dstra#brisktx-transactions](https://github.com/PIVX-Project/insight-api-dstra#brisktx-transactions) 
+* WebSocket: [https://github.com/PIVX-Project/insight-api-ensurance#web-socket-api](https://github.com/PIVX-Project/insight-api-ensurance#web-socket-api) 
+* API: [https://github.com/PIVX-Project/insight-api-ensurance#brisktx-transactions](https://github.com/PIVX-Project/insight-api-ensurance#brisktx-transactions) 
 
 ####Command line option
 

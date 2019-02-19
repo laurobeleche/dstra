@@ -8,5 +8,5 @@
 #else
 #define UNUSED
 #endif
-static const char UNUSED *dstra_strings[] = {
+static const char UNUSED *ensurance_strings[] = {
 };

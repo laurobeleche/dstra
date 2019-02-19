@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/dstra-project/dstra
+url=https://github.com/ensurance-project/ensurance
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the dstra, gitian-builder, gitian.sigs, and dstra-detached-sigs.
+Run this script from the directory containing the ensurance, gitian-builder, gitian.sigs, and ensurance-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/dstra-project/dstra
+-u|--url	Specify the URL of the repository. Default is https://github.com/ensurance-project/ensurance
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/dstra-project/gitian.sigs.git
-    git clone https://github.com/dstra-project/dstra-detached-sigs.git
+    git clone https://github.com/ensurance-project/gitian.sigs.git
+    git clone https://github.com/ensurance-project/ensurance-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./dstra
+pushd ./ensurance
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./dstra-binaries/${VERSION}
+	mkdir -p ./ensurance-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../dstra/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../ensurance/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit dstra=${COMMIT} --url dstra=${url} ../dstra/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../dstra/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/dstra-*.tar.gz build/out/src/dstra-*.tar.gz ../dstra-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit ensurance=${COMMIT} --url ensurance=${url} ../ensurance/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../ensurance/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/ensurance-*.tar.gz build/out/src/ensurance-*.tar.gz ../ensurance-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit dstra=${COMMIT} --url dstra=${url} ../dstra/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../dstra/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/dstra-*-win-unsigned.tar.gz inputs/dstra-win-unsigned.tar.gz
-	    mv build/out/dstra-*.zip build/out/dstra-*.exe ../dstra-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit ensurance=${COMMIT} --url ensurance=${url} ../ensurance/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../ensurance/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/ensurance-*-win-unsigned.tar.gz inputs/ensurance-win-unsigned.tar.gz
+	    mv build/out/ensurance-*.zip build/out/ensurance-*.exe ../ensurance-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit dstra=${COMMIT} --url dstra=${url} ../dstra/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../dstra/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/dstra-*-osx-unsigned.tar.gz inputs/dstra-osx-unsigned.tar.gz
-	    mv build/out/dstra-*.tar.gz build/out/dstra-*.dmg ../dstra-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit ensurance=${COMMIT} --url ensurance=${url} ../ensurance/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../ensurance/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/ensurance-*-osx-unsigned.tar.gz inputs/ensurance-osx-unsigned.tar.gz
+	    mv build/out/ensurance-*.tar.gz build/out/ensurance-*.dmg ../ensurance-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../dstra/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../ensurance/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../dstra/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../ensurance/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../dstra/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../ensurance/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../dstra/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../ensurance/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../dstra/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../ensurance/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../dstra/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../dstra/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/dstra-*win64-setup.exe ../dstra-binaries/${VERSION}
-	    mv build/out/dstra-*win32-setup.exe ../dstra-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../ensurance/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../ensurance/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/ensurance-*win64-setup.exe ../ensurance-binaries/${VERSION}
+	    mv build/out/ensurance-*win32-setup.exe ../ensurance-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../dstra/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../dstra/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/dstra-osx-signed.dmg ../dstra-binaries/${VERSION}/dstra-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../ensurance/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../ensurance/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/ensurance-osx-signed.dmg ../ensurance-binaries/${VERSION}/ensurance-${VERSION}-osx.dmg
 	fi
 	popd
 

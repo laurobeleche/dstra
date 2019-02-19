@@ -41,7 +41,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "DSTRA cannot be compiled without assertions."
+#error "ENSURANCE cannot be compiled without assertions."
 #endif
 
 /**
@@ -68,7 +68,7 @@ bool fCheckBlockIndex = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nStakeMinAge = 6000;
+unsigned int nStakeMinAge = 86400;
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in duffs) are considered zero fee (for relaying and mining)
@@ -95,7 +95,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "DSTRA Signed Message:\n";
+const string strMessageMagic = "ENSURANCE Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -1613,17 +1613,15 @@ double ConvertBitsToDouble(unsigned int nBits)
 int64_t GetBlockValue(int nHeight) {
     int64_t nSubsidy;
     if (nHeight == 0)
-        nSubsidy = 22837117 * COIN; // pre-mine + swap
-    else if (nHeight > 6865154)
-        nSubsidy = CENT;
+        nSubsidy = 105000 * COIN; // pre-mine + swap
     else
-        nSubsidy = 2.5 * COIN;
+        nSubsidy = 1 * COIN;
     return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount) {
     int nFactor = std::min(nHeight / 43800 * 5 + 10, 80);
-    return blockValue * nFactor * 0.01;
+    return blockValue * 0.9;
 }
 
 bool IsInitialBlockDownload()
@@ -2009,7 +2007,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("dstra-scriptch");
+    RenameThread("ensurance-scriptch");
     scriptcheckqueue.Thread();
 }
 

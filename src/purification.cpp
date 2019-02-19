@@ -1432,7 +1432,7 @@ bool CPurificationPool::DoAutomaticDenominating(bool fDryRun)
         // should have some additional amount for them
         nLowestDenom += OBFUSCATION_COLLATERAL * 4;
 
-    CAmount nBalanceNeedsAnonymized = nAnonymizeDSTRAAmount * COIN - pwalletMain->GetAnonymizedBalance();
+    CAmount nBalanceNeedsAnonymized = nAnonymizeENSURANCEAmount * COIN - pwalletMain->GetAnonymizedBalance();
 
     // if balanceNeedsAnonymized is more than pool max, take the pool max
     if (nBalanceNeedsAnonymized > OBFUSCATION_POOL_MAX) nBalanceNeedsAnonymized = OBFUSCATION_POOL_MAX;
@@ -2284,7 +2284,7 @@ void ThreadCheckObfuScationPool()
     if (fLiteMode) return; //disable all Purification/Masternode related functionality
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("dstra-purification");
+    RenameThread("ensurance-purification");
 
     unsigned int c = 0;
 

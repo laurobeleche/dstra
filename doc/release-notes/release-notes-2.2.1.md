@@ -1,13 +1,13 @@
 PIVX Core version 2.2.1 is now available from:
 
-  <https://github.com/dstra-project/dstra/releases>
+  <https://github.com/ensurance-project/ensurance/releases>
 
 This is a new minor version release, including various bug fixes and
 performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/dstra-project/dstra/issues>
+  <https://github.com/ensurance-project/ensurance/issues>
 
 Compatibility
 ==============
@@ -118,4 +118,4 @@ Thanks to everyone who directly contributed to this release:
 - Spock
 - presstab
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/dstra-project-translations/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/ensurance-project-translations/).

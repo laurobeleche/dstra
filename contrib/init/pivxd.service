@@ -3,17 +3,17 @@ Description=PIVX's distributed currency daemon
 After=network.target
 
 [Service]
-User=dstra
-Group=dstra
+User=ensurance
+Group=ensurance
 
 Type=forking
-PIDFile=/var/lib/dstrad/dstrad.pid
+PIDFile=/var/lib/ensuranced/ensuranced.pid
 
-ExecStart=/usr/bin/dstrad -daemon -pid=/var/lib/dstrad/dstrad.pid \
-          -conf=/etc/dstra/dstra.conf -datadir=/var/lib/dstrad
+ExecStart=/usr/bin/ensuranced -daemon -pid=/var/lib/ensuranced/ensuranced.pid \
+          -conf=/etc/ensurance/ensurance.conf -datadir=/var/lib/ensuranced
 
-ExecStop=-/usr/bin/dstra-cli -conf=/etc/dstra/dstra.conf \
-         -datadir=/var/lib/dstrad stop
+ExecStop=-/usr/bin/ensurance-cli -conf=/etc/ensurance/ensurance.conf \
+         -datadir=/var/lib/ensuranced stop
 
 Restart=always
 PrivateTmp=true

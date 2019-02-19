@@ -95,7 +95,7 @@ Issue the following:
 Make note of the hash (which is your collaterla_output) and index.
 
 ### Enter your MasterNode details into your masternode.conf file
-[From the dstra github repo](https://github.com/dstra-crypto/dstra/blob/master/doc/masternode_conf.md)
+[From the ensurance github repo](https://github.com/ensurance-crypto/ensurance/blob/master/doc/masternode_conf.md)
 
 The new masternode.conf format consists of a space seperated text file. Each line consisting of an alias, IP address followed by port, masternode private key, collateral output transaction id and collateral output index, donation address and donation percentage (the latter two are optional and should be in format "address:percentage").
 
@@ -112,20 +112,20 @@ mn01 127.0.0.1:51472 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c8
 mn02 127.0.0.2:51472 93WaAb3htPJEV8E9aQcN23Jt97bPex7YvWfgMDTUdWJvzmrMqey aa9f1034d973377a5e733272c3d0eced1de22555ad45d6b24abadff8087948d4 0 7gnwGHt17heGpG9Crfeh4KGpYNFugPhJdh:25
 ```
 
-## What about the dstra.conf file?
+## What about the ensurance.conf file?
 
-If you are using a masternode.conf file you no longer need the dstra.conf file. The exception is if you need custom settings (thanks oblox). 
+If you are using a masternode.conf file you no longer need the ensurance.conf file. The exception is if you need custom settings (thanks oblox). 
 
-## Update dstra.conf on server
+## Update ensurance.conf on server
 
-If you generated a new masternode private key, you will need to update the remote dstra.conf files.
+If you generated a new masternode private key, you will need to update the remote ensurance.conf files.
 
 Shut down the daemon and then edit the file.
 
-```sudo nano .dstra/dstra.conf```
+```sudo nano .ensurance/ensurance.conf```
 
 ### Edit the masternodeprivkey
-If you generated a new masternode private key, you will need to update the masternodeprivkey value in your remote dstra.conf file.
+If you generated a new masternode private key, you will need to update the masternodeprivkey value in your remote ensurance.conf file.
 
 ## Start your MasterNodes
 
@@ -135,9 +135,9 @@ If your remote server is not running, start your remote daemon as you normally w
 
 I usually confirm that remote is on the correct block by issuing:
 
-```dstrad getinfo```
+```ensuranced getinfo```
 
-And compare with the official explorer at http://dstraexplorer.coin-server.com <or> dnet.presstab.pw
+And compare with the official explorer at http://ensuranceexplorer.coin-server.com <or> dnet.presstab.pw
 
 ### Local
 

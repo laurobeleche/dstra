@@ -64,15 +64,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += dstrad
+  bin_PROGRAMS += ensuranced
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += dstra-cli dstra-tx
+  bin_PROGRAMS += ensurance-cli ensurance-tx
 endif
 
 .PHONY: FORCE
-# dstra core #
+# ensurance core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -180,7 +180,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between dstrad and dstra-qt
+# server: shared between ensuranced and ensurance-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -223,7 +223,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between dstrad and dstra-qt, but only linked
+# wallet: shared between ensuranced and ensurance-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -294,7 +294,7 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between dstrad, and dstra-qt and non-server tools
+# common: shared between ensuranced, and ensurance-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -350,7 +350,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between dstra-cli and dstra-qt
+# cli: shared between ensurance-cli and ensurance-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -360,7 +360,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-dstrad_LDADD = \
+ensuranced_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -371,40 +371,40 @@ dstrad_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-dstrad_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+ensuranced_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-dstrad_LDADD += libbitcoin_wallet.a
+ensuranced_LDADD += libbitcoin_wallet.a
 endif
-dstrad_SOURCES = dstrad.cpp
+ensuranced_SOURCES = ensuranced.cpp
 #
 
 if TARGET_WINDOWS
-dstrad_SOURCES += dstrad-res.rc
+ensuranced_SOURCES += ensuranced-res.rc
 endif
 
-dstrad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-dstrad_CPPFLAGS = $(BITCOIN_INCLUDES)
-dstrad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ensuranced_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+ensuranced_CPPFLAGS = $(BITCOIN_INCLUDES)
+ensuranced_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# dstra-cli binary #
-dstra_cli_LDADD = \
+# ensurance-cli binary #
+ensurance_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(SSL_LIBS) \
   $(CRYPTO_LIBS)
 
-dstra_cli_SOURCES = \
-  dstra-cli.cpp
+ensurance_cli_SOURCES = \
+  ensurance-cli.cpp
 
-dstra_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+ensurance_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
-# dstra-tx binary #
-dstra_tx_LDADD = \
+# ensurance-tx binary #
+ensurance_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -413,15 +413,15 @@ dstra_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-dstra_tx_SOURCES = dstra-tx.cpp
-dstra_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+ensurance_tx_SOURCES = ensurance-tx.cpp
+ensurance_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-dstra_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ensurance_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dstra_cli_SOURCES += dstra-cli-res.rc
+ensurance_cli_SOURCES += ensurance-cli-res.rc
 endif
-dstra_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ensurance_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

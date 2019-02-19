@@ -219,10 +219,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop DSTRA server.");
+            "\nStop ENSURANCE server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "DSTRA server stopping";
+    return "ENSURANCE server stopping";
 }
 
 
@@ -297,25 +297,25 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* DSTRA features */
-        {"dstra", "masternode", &masternode, true, true, false},
-        {"dstra", "listmasternodes", &listmasternodes, true, true, false},
-        {"dstra", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"dstra", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"dstra", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"dstra", "masternodedebug", &masternodedebug, true, true, false},
-        {"dstra", "startmasternode", &startmasternode, true, true, false},
-        {"dstra", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"dstra", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"dstra", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"dstra", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"dstra", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"dstra", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"dstra", "mnsync", &mnsync, true, true, false},
-        {"dstra", "spork", &spork, true, true, false},
-        {"dstra", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* ENSURANCE features */
+        {"ensurance", "masternode", &masternode, true, true, false},
+        {"ensurance", "listmasternodes", &listmasternodes, true, true, false},
+        {"ensurance", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"ensurance", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"ensurance", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"ensurance", "masternodedebug", &masternodedebug, true, true, false},
+        {"ensurance", "startmasternode", &startmasternode, true, true, false},
+        {"ensurance", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"ensurance", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"ensurance", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"ensurance", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"ensurance", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"ensurance", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"ensurance", "mnsync", &mnsync, true, true, false},
+        {"ensurance", "spork", &spork, true, true, false},
+        {"ensurance", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"dstra", "purification", &purification, false, false, true}, /* not threadSafe because of SendMoney */
+        {"ensurance", "purification", &purification, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -580,16 +580,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use dstrad, or the -server option to dstra-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use ensuranced, or the -server option to ensurance-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=dstrarpc\n"
+                                               "rpcuser=ensurancerpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"DSTRA Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"ENSURANCE Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1040,7 +1040,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> dstra-cli " + methodname + " " + args + "\n";
+    return "> ensurance-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

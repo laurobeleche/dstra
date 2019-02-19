@@ -1,13 +1,13 @@
 PIVX Core version 2.3.0 is now available from:
 
-  <https://github.com/dstra-project/dstra/releases>
+  <https://github.com/ensurance-project/ensurance/releases>
 
 This is a new major version release, including various bug fixes and
 performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/dstra-project/dstra/issues>
+  <https://github.com/ensurance-project/ensurance/issues>
 
 Compatibility
 ==============
@@ -115,7 +115,7 @@ The third parameter indicates if the wallet should be unlocked for staking and a
 ZeroMQ (ZMQ) Notifications
 --------------
 
-dstrad can now (optionally) asynchronously notify clients through a ZMQ-based PUB socket of the arrival of new transactions and blocks. This feature requires installation of the ZMQ C API library 4.x and configuring its use through the command line or configuration file. Please see [docs/zmq.md](/doc/zmq.md) for details of operation.
+ensuranced can now (optionally) asynchronously notify clients through a ZMQ-based PUB socket of the arrival of new transactions and blocks. This feature requires installation of the ZMQ C API library 4.x and configuring its use through the command line or configuration file. Please see [docs/zmq.md](/doc/zmq.md) for details of operation.
 
 **All** Masternodes List GUI Removal
 --------------
@@ -190,4 +190,4 @@ Thanks to everyone who directly contributed to this release:
 - furszy
 - presstab
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/dstra-project-translations/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/ensurance-project-translations/).

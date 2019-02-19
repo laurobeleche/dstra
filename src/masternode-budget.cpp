@@ -36,7 +36,7 @@ int GetBudgetPaymentCycleBlocks()
 
 bool IsBudgetCollateralValid(uint256 nTxCollateralHash, uint256 nExpectedHash, std::string& strError, int64_t& nTime, int& nConf)
 {
-    LogPrintf("CBudgetProposalBroadcast::IsBudgetCollateralValid - Budget feature has been disabled on DSTRA network\n");
+    LogPrintf("CBudgetProposalBroadcast::IsBudgetCollateralValid - Budget feature has been disabled on ENSURANCE network\n");
     return false;
 }
 

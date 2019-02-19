@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "DSTRA"
-            VALUE "FileDescription",    "dstra-cli (OSS RPC client for DSTRA)"
+            VALUE "CompanyName",        "ENSURANCE"
+            VALUE "FileDescription",    "ensurance-cli (OSS RPC client for ENSURANCE)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "dstra-cli"
+            VALUE "InternalName",       "ensurance-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "dstra-cli.exe"
-            VALUE "ProductName",        "Dstra-cli"
+            VALUE "OriginalFilename",   "ensurance-cli.exe"
+            VALUE "ProductName",        "Ensurance-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

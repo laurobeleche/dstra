@@ -236,13 +236,13 @@ public:
 
 bool CBitcoinAddress::Set(const CKeyID& id)
 {
-    SetData(Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS), &id, 20);
+    SetData(Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS), &id, 24);
     return true;
 }
 
 bool CBitcoinAddress::Set(const CScriptID& id)
 {
-    SetData(Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS), &id, 20);
+    SetData(Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS), &id, 24);
     return true;
 }
 

@@ -2051,7 +2051,7 @@ bool CWallet::GetBudgetSystemCollateralTX(CTransaction& tx, uint256 hash, bool u
 
 bool CWallet::GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useIX)
 {
-    LogPrintf("CWallet::GetBudgetSystemCollateralTX - Budget feature has been disabled on DSTRA network\n");
+    LogPrintf("CWallet::GetBudgetSystemCollateralTX - Budget feature has been disabled on ENSURANCE network\n");
     return false;
 }
 
@@ -2192,7 +2192,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-dstra-address
+                    // change transaction isn't always pay-to-ensurance-address
                     CScript scriptChange;
 
                     // coin control: send change to custom address

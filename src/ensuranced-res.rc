@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "DSTRA"
-            VALUE "FileDescription",    "dstrad (OSS daemon/client for DSTRA)"
+            VALUE "CompanyName",        "ENSURANCE"
+            VALUE "FileDescription",    "ensuranced (OSS daemon/client for ENSURANCE)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "dstrad"
+            VALUE "InternalName",       "ensuranced"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "dstrad.exe"
-            VALUE "ProductName",        "dstrad"
+            VALUE "OriginalFilename",   "ensuranced.exe"
+            VALUE "ProductName",        "ensuranced"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

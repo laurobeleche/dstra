@@ -77,7 +77,7 @@ extern double NSAppKitVersionNumber;
 #endif
 #endif
 
-#define URI_SCHEME "dstra"
+#define URI_SCHEME "ensurance"
 
 namespace GUIUtil
 {
@@ -110,7 +110,7 @@ void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a DSTRA address (e.g. %1)").arg("D7VFR83SQbiezrW72hjcWJtcfip5krte2Z"));
+    widget->setPlaceholderText(QObject::tr("Enter a ENSURANCE address (e.g. %1)").arg("D7VFR83SQbiezrW72hjcWJtcfip5krte2Z"));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -179,9 +179,9 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out)
 {
-    // Convert dstra:// to dstra:
+    // Convert ensurance:// to ensurance:
     //
-    //    Cannot handle this later, because dstra:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because ensurance:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if (uri.startsWith(URI_SCHEME "://", Qt::CaseInsensitive)) {
         uri.replace(0, std::strlen(URI_SCHEME) + 3, URI_SCHEME ":");
@@ -359,7 +359,7 @@ void openConfigfile()
 {
     boost::filesystem::path pathConfig = GetConfigFile();
 
-    /* Open dstra.conf with the associated application */
+    /* Open ensurance.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -581,7 +581,7 @@ bool DHMSTableWidgetItem::operator<(QTableWidgetItem const& item) const
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "DSTRA.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "ENSURANCE.lnk";
 }
 
 bool GetStartOnSystemStartup()
@@ -660,7 +660,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "dstra.desktop";
+    return GetAutostartDir() / "ensurance.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -696,10 +696,10 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out | std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a dstra.desktop file to the autostart directory:
+        // Write a ensurance.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=DSTRA\n";
+        optionFile << "Name=ENSURANCE\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -718,7 +718,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the dstra app
+    // loop through the list of startup items and try to find the ensurance app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
     for (int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -752,7 +752,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if (fAutoStart && !foundItem) {
-        // add dstra app to startup item list
+        // add ensurance app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, bitcoinAppUrl, NULL, NULL);
     } else if (!fAutoStart && foundItem) {
         // remove item

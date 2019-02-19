@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both dstrad and dstra-qt, to make it harder for attackers to
+ * for both ensuranced and ensurance-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("DSTRA Core");
+const std::string CLIENT_NAME("ENSURANCE Core");
 
 /**
  * Client version number

@@ -53,10 +53,10 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (200, uint256("0000000001069026fd62a4caadc5aa30dcb3eb7555042b5af1fe5cb37d33cf08"));
+    (0, uint256("0"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1535199441, // * UNIX timestamp of last checkpoint block
+    1550550053, // * UNIX timestamp of last checkpoint block
     202,        // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2880        // * estimated number of transactions per day after checkpoint
@@ -80,6 +80,28 @@ static const Checkpoints::CCheckpointData dataRegtest = {
     1,
     1};
 
+void MineGenesis(CBlock genesis, uint256 bnProofOfWorkLimit) {
+    printf("Mining genesis block...\n");
+
+	uint256 bnTarget;
+    bool fNegative;
+    bool fOverflow;
+	
+	bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
+    //for (genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++) { } 
+	if(genesis.nNonce == 0){
+		while (genesis.GetHash() > bnTarget){
+			genesis.nNonce++;
+		}
+	}
+
+    printf("Mined genesis block:\n");
+    printf("Merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+    printf("Nonce: %u\n", genesis.nNonce);
+	printf("Bits: %u\n", genesis.nBits);
+    printf("Hash: %s\n", genesis.GetHash().ToString().c_str());
+	printf("POW: %s\n", bnTarget.ToString().c_str());
+}
 class CMainParams : public CChainParams
 {
 public:
@@ -96,20 +118,20 @@ public:
         pchMessageStart[1] = 0x70;
         pchMessageStart[2] = 0xf6;
         pchMessageStart[3] = 0xa6;
-        vAlertPubKey = ParseHex("04351a16e9a7299c24b72de012b1d16f5a872966dcec0682aa379bba3f8b8d256de3c75d730a2fef0d7b966d8b4366e66c22b5c655030b139e4bc2dfc5199243cc");
-        nDefaultPort = 5269;
+        vAlertPubKey = ParseHex("04a9229fe350aa42d2d0d93ad3f04a3022b521a8226a40ad9ca0c717b2d692eea41d48215ea0e9442b271afe0ba6dccbfeb5d61cc33858655de0f1c0874688a97c");
+        nDefaultPort = 22588;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 60;
-        nTargetSpacing = 60;
-        nLastPOWBlock = 4320;
+        nTargetTimespan = 90;
+        nTargetSpacing = 90;
+        nLastPOWBlock = 1000;
         nMaturity = 100;
         nModifierUpdateBlock = 0; // always use stake modifier v2
-        nMaxMoneyOut = 40000000 * COIN;
+        nMaxMoneyOut = 7000000 * COIN;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -121,31 +143,33 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "WIRED - FCC Offers Small ISPs a Boost, but a Bigger Setback Looms";
+        const char* pszTimestamp = "Ensurance - 19/02/2018 the Best";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("049b34d8dea1a12304aa5027f7091225f81c4f0f8ed0b40abe0b00ca14353ea8df21ffe4bf5dc575fd83af9a2b1c0c6def16037672c289c47c771898e1dcd1ce86") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04deef4448ad4fa50d169182887dbbd606b526e546210583a8fab6a2e60fa7a2026aa27d45371e88d952410221e717b40c569e44f5da7dfc4a415a7ca390f31c13") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1533081600;
+        genesis.nTime = 1550550053;
         genesis.nBits = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 3752795;
+        genesis.nNonce = 0;
 
+		MineGenesis(genesis, bnProofOfWorkLimit);
+		
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("000000d280fd2dcad5c440a9e444a599a9074e15fa3588921f5a81e192e358f7"));
-        assert(genesis.hashMerkleRoot == uint256("bc9d7507709a1941c27f8e426c1ab5bfb1c14579c09a8052be1658997b778966"));
+        assert(hashGenesisBlock == uint256("0"));
+        assert(genesis.hashMerkleRoot == uint256("0"));
 
-        vSeeds.push_back(CDNSSeedData("dstra.io", "seeds.dstra.io"));
-        vSeeds.push_back(CDNSSeedData("happycat.gq", "dstra.happycat.gq"));
+        //vSeeds.push_back(CDNSSeedData("ensurance.io", "seeds.ensurance.io"));
+        //vSeeds.push_back(CDNSSeedData("happycat.gq", "ensurance.happycat.gq"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30); // D 30, F 35
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33); // D 30, F 35
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 33); // E
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 131); // '5' or 'L' (same as DSTRA v1)
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 131); // '5' or 'L' (same as ENSURANCE v1)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x14)(0xd2)(0xff)(0x12).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x14)(0xd2)(0x4f)(0x7e).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
@@ -164,9 +188,9 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "04351a16e9a7299c24b72de012b1d16f5a872966dcec0682aa379bba3f8b8d256de3c75d730a2fef0d7b966d8b4366e66c22b5c655030b139e4bc2dfc5199243cc";
+        strSporkKey = "04c882cfac6d68edccc3a9a7eb153b6b87400b833fd4ad33340b97dfe0f2997dfa0042656c40a5eb41001544eff5e36508d71503b345fe8a08c2c5405aa7ce78e9";
         strPurificationPoolDummyAddress = "DHXZbrfGkJQ3yvxv6djm3nJkLwvBhFLhks";
-        nStartMasternodePayments = 1533081600; // 08/01/2018 @ 12:00am (UTC)
+        nStartMasternodePayments = 1550550053; // 08/01/2018 @ 12:00am (UTC)
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
@@ -191,7 +215,7 @@ public:
         pchMessageStart[2] = 0x00;
         pchMessageStart[3] = 0x3e;
         vAlertPubKey = ParseHex("04c24e0aae95b98bdcb92143fbfbbd4122d57952e4ce7a13e904209040a7874a7527483bae3778f4fae539acf27a160e895f5bf7e9e99679452837b1f314242643");
-        nDefaultPort = 15269;
+        nDefaultPort = 122588;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
@@ -209,8 +233,8 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        vSeeds.push_back(CDNSSeedData("dstra.io", "seeds-testnet.dstra.io"));
-        vSeeds.push_back(CDNSSeedData("happycat.gq", "tdstra.happycat.gq"));
+        vSeeds.push_back(CDNSSeedData("ensurance.io", "seeds-testnet.ensurance.io"));
+        vSeeds.push_back(CDNSSeedData("happycat.gq", "tensurance.happycat.gq"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // T
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 68); // U
@@ -265,7 +289,7 @@ public:
         genesis.nNonce = 0;
 
         hashGenesisBlock = genesis.GetHash();
-        nDefaultPort = 25269;
+        nDefaultPort = 222588;
         assert(hashGenesisBlock == uint256("5fccc734307e7a9dbeccfdeb47d4a4c0f932fd74f41f3d2fea7705c18b9bf0f3"));
 
         vFixedSeeds.clear();

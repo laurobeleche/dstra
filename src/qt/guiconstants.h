@@ -13,7 +13,7 @@ static const int MODEL_UPDATE_DELAY = 250;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* DSTRA GUI -- Size of icons in status bar */
+/* ENSURANCE GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 35
 
-#define QAPP_ORG_NAME "DSTRA"
-#define QAPP_ORG_DOMAIN "dstra.io"
-#define QAPP_APP_NAME_DEFAULT "DSTRA-Qt"
-#define QAPP_APP_NAME_TESTNET "DSTRA-Qt-testnet"
+#define QAPP_ORG_NAME "ENSURANCE"
+#define QAPP_ORG_DOMAIN "ensurance.io"
+#define QAPP_APP_NAME_DEFAULT "ENSURANCE-Qt"
+#define QAPP_APP_NAME_TESTNET "ENSURANCE-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

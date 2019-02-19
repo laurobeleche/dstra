@@ -46,10 +46,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("DSTRA Core dstra-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("ENSURANCE Core ensurance-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  dstra-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded DSTRA transaction") + "\n" +
-                               "  dstra-tx [options] -create [commands]   " + _("Create hex-encoded DSTRA transaction") + "\n" +
+                               "  ensurance-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded ENSURANCE transaction") + "\n" +
+                               "  ensurance-tx [options] -create [commands]   " + _("Create hex-encoded ENSURANCE transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -550,7 +550,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw runtime_error("too few parameters");
 
-            // param: hex-encoded dstra transaction
+            // param: hex-encoded ensurance transaction
             string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

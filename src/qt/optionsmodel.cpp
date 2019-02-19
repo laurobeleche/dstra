@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/dstra-config.h"
+#include "config/ensurance-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -75,11 +75,11 @@ void OptionsModel::Init()
     if (!settings.contains("nPurificationRounds"))
         settings.setValue("nPurificationRounds", 2);
 
-    if (!settings.contains("nAnonymizeDSTRAAmount"))
-        settings.setValue("nAnonymizeDSTRAAmount", 1000);
+    if (!settings.contains("nAnonymizeENSURANCEAmount"))
+        settings.setValue("nAnonymizeENSURANCEAmount", 1000);
 
     nPurificationRounds = settings.value("nPurificationRounds").toLongLong();
-    nAnonymizeDSTRAAmount = settings.value("nAnonymizeDSTRAAmount").toLongLong();
+    nAnonymizeENSURANCEAmount = settings.value("nAnonymizeENSURANCEAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -146,8 +146,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nPurificationRounds"))
         SoftSetArg("-purificationrounds", settings.value("nPurificationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeDSTRAAmount"))
-        SoftSetArg("-anonymizedstraamount", settings.value("nAnonymizeDSTRAAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeENSURANCEAmount"))
+        SoftSetArg("-anonymizeensuranceamount", settings.value("nAnonymizeENSURANCEAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -158,7 +158,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in dstra.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in ensurance.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -227,8 +227,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nThreadsScriptVerif");
         case PurificationRounds:
             return QVariant(nPurificationRounds);
-        case AnonymizeDSTRAAmount:
-            return QVariant(nAnonymizeDSTRAAmount);
+        case AnonymizeENSURANCEAmount:
+            return QVariant(nAnonymizeENSURANCEAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -337,10 +337,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("nPurificationRounds", nPurificationRounds);
             emit purificationRoundsChanged(nPurificationRounds);
             break;
-        case AnonymizeDSTRAAmount:
-            nAnonymizeDSTRAAmount = value.toInt();
-            settings.setValue("nAnonymizeDSTRAAmount", nAnonymizeDSTRAAmount);
-            emit anonymizeDSTRAAmountChanged(nAnonymizeDSTRAAmount);
+        case AnonymizeENSURANCEAmount:
+            nAnonymizeENSURANCEAmount = value.toInt();
+            settings.setValue("nAnonymizeENSURANCEAmount", nAnonymizeENSURANCEAmount);
+            emit anonymizeENSURANCEAmountChanged(nAnonymizeENSURANCEAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

@@ -1,6 +1,6 @@
 Mac OS X Build Instructions and Notes
 ====================================
-This guide will show you how to build dstrad (headless client) for OSX.
+This guide will show you how to build ensuranced (headless client) for OSX.
 
 Notes
 -----
@@ -40,14 +40,14 @@ Instructions: Homebrew
 
         brew install autoconf automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf qt5
 
-### Building `dstrad`
+### Building `ensuranced`
 
 1. Clone the github tree to get the source code and go into the directory.
 
         git clone https://github.com/PIVX-Project/PIVX.git
         cd PIVX
 
-2.  Build dstrad:
+2.  Build ensuranced:
 
         ./autogen.sh
         ./configure --with-gui=qt5
@@ -57,7 +57,7 @@ Instructions: Homebrew
 
         make check
 
-4.  (Optional) You can also install dstrad to your path:
+4.  (Optional) You can also install ensuranced to your path:
 
         make install
 
@@ -69,7 +69,7 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 1. Make sure you installed everything through homebrew mentioned above
 2. Do a proper ./configure --with-gui=qt5 --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "dstra-qt" as project name, enter src/qt as location
+4. Enter "ensurance-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -79,11 +79,11 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 
 Creating a release build
 ------------------------
-You can ignore this section if you are building `dstrad` for your own use.
+You can ignore this section if you are building `ensuranced` for your own use.
 
-dstrad/dstra-cli binaries are not included in the dstra-Qt.app bundle.
+ensuranced/ensurance-cli binaries are not included in the ensurance-Qt.app bundle.
 
-If you are building `dstrad` or `dstra-qt` for others, your build machine should be set up
+If you are building `ensuranced` or `ensurance-qt` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -98,14 +98,14 @@ bundle is packaged and signed to create the .dmg disk image that is distributed.
 Running
 -------
 
-It's now available at `./dstrad`, provided that you are still in the `src`
+It's now available at `./ensuranced`, provided that you are still in the `src`
 directory. We have to first create the RPC configuration file, though.
 
-Run `./dstrad` to get the filename where it should be put, or just try these
+Run `./ensuranced` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=dstrarpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/PIVX/dstra.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/PIVX/dstra.conf"
+    echo -e "rpcuser=ensurancerpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/PIVX/ensurance.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/PIVX/ensurance.conf"
 
 The next time you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours;
@@ -116,6 +116,6 @@ you can monitor its process by looking at the debug.log file, like this:
 Other commands:
 -------
 
-    ./dstrad -daemon # to start the dstra daemon.
-    ./dstra-cli --help  # for a list of command-line options.
-    ./dstra-cli help    # When the daemon is running, to get a list of RPC commands
+    ./ensuranced -daemon # to start the ensurance daemon.
+    ./ensurance-cli --help  # for a list of command-line options.
+    ./ensurance-cli help    # When the daemon is running, to get a list of RPC commands

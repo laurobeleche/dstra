@@ -76,10 +76,10 @@ If only supported symbols are used the return value will be 0 and the output wil
 
 If there are 'unsupported' symbols, the return value will be 1 a list like this will be printed:
 
-    .../64/test_dstra: symbol memcpy from unsupported version GLIBC_2.14
-    .../64/test_dstra: symbol __fdelt_chk from unsupported version GLIBC_2.15
-    .../64/test_dstra: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
-    .../64/test_dstra: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
+    .../64/test_ensurance: symbol memcpy from unsupported version GLIBC_2.14
+    .../64/test_ensurance: symbol __fdelt_chk from unsupported version GLIBC_2.15
+    .../64/test_ensurance: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
+    .../64/test_ensurance: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
 
 update-translations.py
 ======================

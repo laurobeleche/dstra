@@ -9,7 +9,7 @@
 #define BITCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/dstra-config.h"
+#include "config/ensurance-config.h"
 #endif
 
 #include "amount.h"
